@@ -4,6 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f4c430">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon.png">
   <title>星辰塔羅 Tarot</title>
   <meta name="description" content="星辰塔羅網站，提供完整 78 張偉特塔羅牌解析、牌義與占卜資訊，方便查找塔羅牌資料與學習塔羅占卜。" />
   <link rel="icon" href="https://source.unsplash.com/32x32/?tarot,card" type="image/x-icon" />
@@ -81,6 +90,19 @@
   </style>
 </head>
 <body>
+    <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(function(registration) {
+        console.log('ServiceWorker 註冊成功:', registration.scope);
+      })
+      .catch(function(err) {
+        console.log('ServiceWorker 註冊失敗:', err);
+      });
+  });
+}
+</script>
   <div class="page">
     <header class="site-header">
       <nav class="nav">
