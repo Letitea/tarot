@@ -1,11 +1,11 @@
 {
-  "name": "星辰塔羅 Tarot",
-  "short_name": "星辰塔羅",
+  "name": "Tarot",
+  "short_name": "Tarot",
   "description": "星辰塔羅網站，提供完整 78 張偉特塔羅牌解析與占卜資訊。",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#1c1c1c",
-  "theme_color": "#f4c430",
+  "background_color": "#FFE6EE",
+  "theme_color": "#FFE6EE",
   "icons": [
     {
       "src": "icon.png",
