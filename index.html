@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>星辰塔羅 Tarot</title>
+  <meta name="description" content="星辰塔羅網站，提供完整 78 張偉特塔羅牌解析、牌義與占卜資訊，方便查找塔羅牌資料與學習塔羅占卜。" />
+  <link rel="icon" href="https://source.unsplash.com/32x32/?tarot,card" type="image/x-icon" />
+
+  <style>
+    /* CSS:BASE-START */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: #1c1c1c;
+      background-image: url("https://plus.unsplash.com/premium_photo-1693007962564-af5f2adfb8c2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #eee;
+      line-height: 1.6;
+    }
+    .page { display: flex; flex-direction: column; min-height: 100vh; background: rgba(0,0,0,0.5); /* 半透明遮罩，提升文字可讀性 */ }
+    .container { max-width: 1200px; padding: 0 1rem; margin: 0 auto; min-width: 70%;}
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: #f4c430; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* CSS:BASE-END */
+
+    /* CSS:HEADER-START */
+    .site-header { position: sticky; top: 0; background-color: rgba(34,34,34,0.9); padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 100; }
+    .nav { display: flex; align-items: center; justify-content: flex-start; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    .nav-link { margin-right: 1rem; font-weight: bold; color: #f4c430; }
+    /* CSS:HEADER-END */
+
+    /* CSS:HERO-START */
+    .section-hero { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1rem; text-align: center; color: #fff; }
+    .section-hero h1 { font-size: 2rem; margin-bottom: 1rem; }
+    /* CSS:HERO-END */
+
+    /* CSS:TAROT-CARDS-START */
+    .tarot-thumbnails { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; margin-top: 2rem; }
+    .tarot-thumbnails a { display: block; width: 60px; height: 100px; }
+    .tarot-thumbnails img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+    .section { padding: 2rem 1rem; border-bottom: 1px solid #333; background-color: rgba(0,0,0,0.6); }
+    .section h2 { margin-bottom: 1rem; color: #f4c430;min-width:80%; }
+    .tarot-content { display: flex; flex-direction: column; gap: 1rem; }
+    /* CSS:TAROT-CARDS-END */
+
+    /* CSS:CARD-STYLES-SLOTS-START */
+    /* 這裡是各張牌專屬樣式的 CSS Slot。若未來要為某張牌客製樣式，請依照以下格式新增： */
+
+    /* CSS:SECTION-THE-FOOL-START */
+    /* .section-the-fool {  } */
+    /* CSS:SECTION-THE-FOOL-END */
+
+    /* CSS:SECTION-THE-MAGICIAN-START */
+    /* .section-the-magician {  } */
+    /* CSS:SECTION-THE-MAGICIAN-END */
+
+    /* CSS:SECTION-THE-HIGH-PRIESTESS-START */
+    /* .section-the-high_priestess {  } */
+    /* CSS:SECTION-THE-HIGH-PRIESTESS-END */
+
+    /* …依此類推，為所有牌 (78 張) 建立同樣格式的 Slot … */
+    /* CSS:CARD-STYLES-SLOTS-END */
+
+    /* CSS:RWD-START */
+    @media (min-width: 768px) {
+      .tarot-thumbnails { justify-content: flex-start; }
+      .section { padding: 3rem 2rem;min-width:80%; }
+      .section-hero h1 { font-size: 3rem; }
+    }
+    @media (min-width: 1440px) {
+      .container { padding: 0 2rem; }
+      .section {min-width:80%;}
+    }
+    /* CSS:RWD-END */
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <nav class="nav">
+        <span class="nav-link">星辰塔羅</span>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section id="hero" class="section section-hero">
+        <h1>星辰塔羅 Tarot</h1>
+        <p>這裡展示 78 張偉特塔羅牌，點擊下方縮圖即可快速瀏覽各張牌的詳細解析與牌義。</p>
+              <div class="tarot-search" style="text-align:center; margin-bottom:2rem;">
+  <input type="text" id="tarot-search-input" placeholder="輸入塔羅牌英文名稱搜尋..." 
+         style="padding:0.5rem 1rem; width:100%; max-width:400px; border-radius:4px; border:1px solid #ccc;" />
+</div>
+      </section>
+
+      <div class="tarot-thumbnails" id="tarot-thumbnails">
+        <!-- 縮圖會由 JS 自動生成 -->
+      </div>
+
+      <div id="tarot-sections">
+        <!-- SECTION SLOT: 每張牌區塊由 JS 自動生成 -->
+      </div>
+    </main>
+
+    <footer class="section">
+      <div class="container">
+        <p>&copy; 2025 星辰塔羅。版權所有，禁止轉載。</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTAlfXwjBpUPKaSKWPWN9FZgYdcPQ8YRliCT2xeZ-6Ejwa4Gpx0p6uoesqlgUovY_fEgpQDr3wmMC-N/pub?output=csv';
+
+Papa.parse(sheetURL, {
+  download: true,
+  header: true,
+  complete: function(results) {
+    const data = results.data;
+    const thumbnails = document.getElementById('tarot-thumbnails');
+    const sectionsContainer = document.getElementById('tarot-sections');
+
+    data.forEach(row => {
+      if (!row.牌名) return;
+
+      const engName = row.牌名.toLowerCase().replace(/\s+/g, '_');
+
+      // 生成縮圖
+      const thumbLink = document.createElement('a');
+      thumbLink.href = `#${engName}`;
+      const thumbImg = document.createElement('img');
+      // 使用牌名作為搜尋關鍵字
+thumbImg.src = `${row.圖片連結}`;
+      thumbImg.alt = `塔羅牌的 ${row.牌名}`;
+      thumbImg.title = row.牌名;
+      thumbImg.loading = 'lazy';
+      thumbLink.appendChild(thumbImg);
+      thumbnails.appendChild(thumbLink);
+
+      // 生成牌 section
+      const commentStart = document.createComment(`SECTION:${engName.toUpperCase()}-START`);
+      const commentEnd = document.createComment(`SECTION:${engName.toUpperCase()}-END`);
+      const sectionEl = document.createElement('section');
+      sectionEl.id = engName;
+      sectionEl.className = `section section-${engName}`;
+
+      const html = `
+        <h2>${row.牌名}</h2>
+        <div class="tarot-content">
+<img src="${row.圖片連結}" width="100px" alt="塔羅牌的 ${row.牌名}" loading="lazy"/>
+          <p>牌面說明：此處顯示 ${row.牌名} 的基本意象／象徵（請依照實際內容替換）。</p>
+          <ul>
+            <li>正位_求職/事業：${row["正位_求職/事業"] || '暫無資料'}</li>
+            <li>逆位_求職/事業：${row["逆位_求職/事業"] || '暫無資料'}</li>
+            <li>正位_考試：${row["正位_考試"] || '暫無資料'}</li>
+            <li>逆位_考試：${row["逆位_考試"] || '暫無資料'}</li>
+            <li>正位_感情：${row["正位_感情"] || '暫無資料'}</li>
+            <li>逆位_感情：${row["逆位_感情"] || '暫無資料'}</li>
+            <li>正位_投資：${row["正位_投資"] || '暫無資料'}</li>
+            <li>逆位_投資：${row["逆位_投資"] || '暫無資料'}</li>
+            <li>正位_健康：${row["正位_健康"] || '暫無資料'}</li>
+            <li>逆位_健康：${row["逆位_健康"] || '暫無資料'}</li>
+          </ul>
+        </div>
+      `;
+
+      sectionEl.innerHTML = html;
+
+      sectionsContainer.appendChild(commentStart);
+      sectionsContainer.appendChild(sectionEl);
+      sectionsContainer.appendChild(commentEnd);
+    });
+    
+    
+    
+    
+    
+      const searchInput = document.getElementById('tarot-search-input');
+
+searchInput.addEventListener('input', function() {
+  const query = this.value.trim().toLowerCase();
+
+  data.forEach(row => {
+    if (!row.牌名) return;
+    const engName = row.牌名.toLowerCase().replace(/\s+/g, '_');
+
+    const thumbLink = document.querySelector(`.tarot-thumbnails a[href="#${engName}"]`);
+    const sectionEl = document.getElementById(engName);
+
+    if (engName.includes(query)) {
+      thumbLink.style.display = 'inline-block';
+      sectionEl.style.display = 'block';
+    } else {
+      thumbLink.style.display = 'none';
+      sectionEl.style.display = 'none';
+    }
+  });
+});
+  }
+});
+
+</script>
+</body>
+</html>
